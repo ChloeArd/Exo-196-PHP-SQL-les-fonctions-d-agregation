@@ -35,7 +35,7 @@
     $state = $stmt->execute();
     if ($state) {
         $min = $stmt->fetch();
-        echo "L'age minimun des utilisateurs est " . $min['minimum'] . " ans <br><br>";
+        echo "L'age minimum des utilisateurs est " . $min['minimum'] . " ans <br><br>";
     }
 
     //4
