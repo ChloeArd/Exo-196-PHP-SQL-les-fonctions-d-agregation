@@ -25,6 +25,64 @@
 
     // TODO Votre code ici, commencez par require un des objet de connexion que nous avons fait ensemble.
 
+    require "Classes/DB.php";
+
+    $bdd = DB::getInstance();
+
+    $stmt = $bdd->prepare("SELECT MIN(age) as minimum FROM user");
+
+    //3
+    $state = $stmt->execute();
+    if ($state) {
+        $min = $stmt->fetch();
+        echo "L'age minimun des utilisateurs est " . $min['minimum'] . " ans <br><br>";
+    }
+
+    //4
+    $stmt = $bdd->prepare("SELECT MAX(age) as maximum FROM user");
+
+    $state = $stmt->execute();
+    if ($state) {
+        $max = $stmt->fetch();
+        echo "L'age maximum des utilisateurs est " . $max['maximum'] . " ans <br><br>";
+    }
+
+    //5
+    $stmt = $bdd->prepare("SELECT COUNT(*) as number FROM user");
+
+    $state = $stmt->execute();
+    if ($state) {
+        $count = $stmt->fetch();
+        echo "Il y a " . $count['number'] . " utilisateurs <br><br>";
+    }
+
+    //6
+    $stmt = $bdd->prepare("SELECT COUNT(*) as number FROM user WHERE numero >= 5");
+
+    $state = $stmt->execute();
+    if ($state) {
+        $count = $stmt->fetch();
+        echo "Il y a " . $count['number'] . " utilisateurs qui ont un numéro de rue >= 5<br><br>";
+    }
+
+    //7
+    $stmt = $bdd->prepare("SELECT AVG(age) as moyenne_age FROM user");
+
+    $state = $stmt->execute();
+    if ($state) {
+        $avg = $stmt->fetch();
+        echo "La moyenne d'âge des utilisateurs est de " . $avg['moyenne_age'] . " ans <br><br>";
+    }
+
+    //8
+    $stmt = $bdd->prepare("SELECT SUM(numero) as somme_numero FROM user");
+
+    $state = $stmt->execute();
+    if ($state) {
+        $sum = $stmt->fetch();
+        echo "La somme des numéros de maison des 3 utilisateurs sont de " . $sum['somme_numero'] . " <br><br>";
+    }
+
 
     ?>
 </body>
